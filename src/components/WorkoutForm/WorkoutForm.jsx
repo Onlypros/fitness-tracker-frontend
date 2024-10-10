@@ -3,49 +3,60 @@ import { useParams } from "react-router-dom";
 import * as workoutService from "../../services/workoutService";
 
 const WorkoutForm = (props) => {
+  const { workoutId } = useParams();
+
   const [formData, setFormData] = useState({
-    workoutType: '',
-    caloriesBurned: Number
+    workoutType: "",
+    caloriesBurned: "", // Initialize as an empty string
   });
 
-// <Route path='/workouts
-
-const { workoutId } = useParams();
-  useEffect (() => {
-    async function fetchWorkout(){
-      // workoutId comes from the params
-      const workoutData = await workoutService.show(workoutId)
-      // prefill out the form with the workouts data
-      setFormData(workoutData)
+  useEffect(() => {
+    async function fetchWorkout() {
+      try {
+        const workoutData = await workoutService.show(workoutId);
+        // Check if workoutData has the expected structure
+        if (workoutData) {
+          setFormData({
+            workoutType: workoutData.workoutType || "",
+            caloriesBurned: workoutData.caloriesBurned || "",
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching workout:", error);
+      }
     }
 
-    if(workoutId){
-      fetchWorkout()
+    if (workoutId) {
+      fetchWorkout();
     }
-  }, [workoutId])
+  }, [workoutId]);
 
   const handleChange = (event) => {
-	console.log(event.target.name)
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+    // For caloriesBurned, convert value to number
+    setFormData({
+      ...formData,
+      [name]: name === "caloriesBurned" ? Number(value) : value,
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('formData', formData);
+    console.log("formData", formData);
 
-    if(workoutId){
-      // update page
+    if (workoutId) {
+      // Update existing workout
       props.handleUpdateWorkout(workoutId, formData);
     } else {
-      // new page
-      props.handleAddWorkout(formData)
+      // Add new workout
+      props.handleAddWorkout(formData);
     }
   };
 
   return (
     <main>
       <form onSubmit={handleSubmit}>
-        <h1>{workoutId ? 'Edit Workout' : 'New Workout'}</h1>
+        <h1>{workoutId ? "Edit Workout" : "New Workout"}</h1>
         <label htmlFor="workoutType-input">Workout</label>
         <input
           required

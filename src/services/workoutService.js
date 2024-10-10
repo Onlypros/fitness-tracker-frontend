@@ -17,8 +17,14 @@ async function show(workoutId) {
     const response = await fetch(`${BASE_URL}/${workoutId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
+    
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    
     const data = await response.json();
-    return data;
+    // Updated this to ensure the goals are always an array!
+    return { ...data, goals: data.goals || [] };
   } catch (err) {
     console.log(err, "<-- err in show workoutService");
   }
