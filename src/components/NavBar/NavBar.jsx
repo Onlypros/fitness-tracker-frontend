@@ -18,6 +18,9 @@ const NavBar = ({ handleSignout }) => {
                 Sign Out
               </Link>
             </li>
+            <li>
+              <Link to="/workouts">workouts</Link>
+            </li>
           </ul>
         </nav>
       ) : (
