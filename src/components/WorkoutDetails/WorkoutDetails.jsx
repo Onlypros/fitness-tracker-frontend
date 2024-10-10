@@ -26,7 +26,7 @@ export default function WorkoutDetails(props) {
 
 
     async function handleAddGoal(goalFormData) {
-    const newWorkoutDoc = await workoutService.createGoal(hootId, goalFormData)
+    const newWorkoutDoc = await workoutService.createGoal(workoutId, goalFormData)
     setWorkout(newWorkoutDoc)
     }
     if (!workout) return <main>Loading....</main>;
@@ -49,7 +49,7 @@ export default function WorkoutDetails(props) {
         
         {!workout.goal.length && <p>There are no goals</p>}
 
-        {hoot.goals.map((goal) => {
+        {workout.goals.map((goal) => {
           return (
 		  	<article key={goal._id}>
 				<header>
