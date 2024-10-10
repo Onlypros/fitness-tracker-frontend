@@ -6,6 +6,8 @@ import Dashboard from './components/Dashboard/Dashboard';
 import SignupForm from './components/SignupForm/SignupForm';
 import SigninForm from './components/SigninForm/SigninForm';
 
+import WorkoutDetails from './components/WorkoutDetails/WorkoutDetails';
+
 
 // these are our service files
 import * as authService from '../src/services/authService'; // import the authservice
