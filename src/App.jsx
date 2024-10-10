@@ -1,15 +1,15 @@
-import { useState, createContext, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar';
-import Landing from './components/Landing/Landing';
-import Dashboard from './components/Dashboard/Dashboard';
-import SignupForm from './components/SignupForm/SignupForm';
-import SigninForm from './components/SigninForm/SigninForm';
-
+import { useState, createContext, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
+import Landing from "./components/Landing/Landing";
+import Dashboard from "./components/Dashboard/Dashboard";
+import SignupForm from "./components/SignupForm/SignupForm";
+import SigninForm from "./components/SigninForm/SigninForm";
+import WorkoutList from "./components/WorkoutList/WorkoutList";
 
 // these are our service files
-import * as authService from '../src/services/authService'; // import the authservice
-import * as workoutService from '../src/services/workoutService'
+import * as authService from "../src/services/authService"; // import the authservice
+import * as workoutService from "../src/services/workoutService";
 
 export const AuthedUserContext = createContext(null);
 
@@ -30,7 +30,7 @@ const App = () => {
     if (user) {
       fetchAllworkouts();
     }
-  }, [user])
+  }, [user]);
 
   return (
     <>
@@ -38,7 +38,13 @@ const App = () => {
         <NavBar user={user} handleSignout={handleSignout} />
         <Routes>
           {user ? (
-            <Route path="/" element={<Dashboard user={user} />} />
+            <>
+              <Route path="/" element={<Dashboard user={user} />} />
+              <Route
+                path="/workouts"
+                element={<WorkoutList workouts={workouts} />}
+              />
+            </>
           ) : (
             <Route path="/" element={<Landing />} />
           )}
