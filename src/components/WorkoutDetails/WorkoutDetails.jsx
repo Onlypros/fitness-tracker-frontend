@@ -51,10 +51,9 @@ export default function WorkoutDetails(props) {
   return (
     <main>
       <header>
-        <p>{workout.workoutType}</p>
-        <h1>{workout.caloriesBurned}</h1>
+        <h1>Workout Type: {workout.workoutType}</h1>
+        <p>Calories Burned: {workout.caloriesBurned}</p>
         <p>{workout.goalType}</p>
-        <p>{new Date(workout.endDate).toLocaleDateString()}</p>
 
         {workout.user === loggedInUser._id && (
           <>
@@ -67,8 +66,8 @@ export default function WorkoutDetails(props) {
       </header>
       <p>{workout.notes}</p>
       <section>
-        <h2>Goals</h2>
         <GoalForm handleAddGoal={handleAddGoal} />
+        <h2>Goals</h2>
 
         {workout.goals.length === 0 ? (
           <p>There are no goals</p>
