@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 
-import { AuthedUserContext, WuthedUserContext } from '../../App';
+import { AuthedUserContext } from '../../App';
 
 import { useParams, Link } from "react-router-dom";
 
-import * workoutService from "../../services/workoutService";
+import * as workoutService from "../../services/workoutService";
 
 export default function WorkoutDetails(props) {
     const [workout, setWorkout] = useState(null);
