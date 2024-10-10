@@ -1,13 +1,13 @@
 import { useState, createContext, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import Landing from "./components/Landing/Landing";
 import Dashboard from "./components/Dashboard/Dashboard";
 import SignupForm from "./components/SignupForm/SignupForm";
 import SigninForm from "./components/SigninForm/SigninForm";
 import WorkoutList from "./components/WorkoutList/WorkoutList";
-
-
+import WorkoutForm from "./components/WorkoutForm/WorkoutForm";
+import WorkoutDetails from "./components/WorkoutDetails/WorkoutDetails";
 
 // these are our service files
 import * as authService from "../src/services/authService"; // import the authservice
@@ -18,10 +18,38 @@ export const AuthedUserContext = createContext(null);
 const App = () => {
   const [user, setUser] = useState(authService.getUser()); // using the method from authservice
   const [workouts, setWorkouts] = useState([]);
+
+  const navigate = useNavigate();
+
   const handleSignout = () => {
     authService.signout();
     setUser(null);
   };
+
+  async function handleAddWorkout(workoutFormData) {
+    const newWorkout = await workoutService.create(workoutFormData);
+    setWorkouts([newWorkout, ...workouts]);
+    navigate("/workouts");
+  }
+
+  async function handleDeleteWorkout(workoutId) {
+    const response = await workoutService.deleteWorkout(workoutId);
+    setWorkouts(workouts.filter((workout) => workout._id != workoutId));
+    navigate("/workouts");
+  }
+
+  async function handleUpdateWorkout(workoutId, workoutFormData) {
+    const updatedWorkout = await workoutService.update(
+      workoutId,
+      workoutFormData
+    );
+    setWorkouts(
+      workouts.map((workout) =>
+        workoutId === workout._id ? updatedWorkout : workout
+      )
+    );
+    navigate(`/workouts/${workoutId}`);
+  }
 
   useEffect(() => {
     async function fetchAllworkouts() {
@@ -45,6 +73,22 @@ const App = () => {
               <Route
                 path="/workouts"
                 element={<WorkoutList workouts={workouts} />}
+              />
+              <Route
+                path="/workouts/new"
+                element={<WorkoutForm handleAddWorkout={handleAddWorkout} />}
+              />
+              <Route
+                path="/workouts/:workoutId"
+                element={
+                  <WorkoutDetails handleDeleteWorkout={handleDeleteWorkout} />
+                }
+              />
+              <Route
+                path="/workouts/:workoutId/edit"
+                element={
+                  <WorkoutForm handleUpdateWorkout={handleUpdateWorkout} />
+                }
               />
             </>
           ) : (

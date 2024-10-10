@@ -1,66 +1,88 @@
 import { useState, useEffect, useContext } from "react";
-
-import { AuthedUserContext } from '../../App';
-
+import { AuthedUserContext } from "../../App";
 import { useParams, Link } from "react-router-dom";
-
 import * as workoutService from "../../services/workoutService";
+import GoalForm from "../GoalForm/GoalForm";
 
 export default function WorkoutDetails(props) {
-    const [workout, setWorkout] = useState(null);
+  const [workout, setWorkout] = useState(null);
+  const loggedInUser = useContext(AuthedUserContext);
+  const { workoutId } = useParams();
 
-    const loggedInUser = useContext(AuthedUserContext);
+  console.log(workoutId, "Workout ID");
 
-    const { workoutId } = useParams();
-    console.log(workoutId, "Workout ID");
-
-    useEffect(() => {
-        async function getWorkout() {
-
-            const workoutData = await workoutService.show(workoutId);
-            setWorkout(workoutData);
-        }
-
-        getWorkout();
-    }, [workoutId]);
-
-
-    async function handleAddGoal(goalFormData) {
-    const newWorkoutDoc = await workoutService.createGoal(workoutId, goalFormData)
-    setWorkout(newWorkoutDoc)
+  useEffect(() => {
+    async function getWorkout() {
+      const workoutData = await workoutService.show(workoutId);
+      setWorkout({ ...workoutData, goals: workoutData.goals || [] });
+      console.log(workoutData, "<-- workoutData"); // Log the data
     }
-    if (!workout) return <main>Loading....</main>;
 
-    return (
-        <main>
-            <header>
-                <p>{workout.category.toUppercase()}</p>
-                <h1>{workout.title}</h1>
-        <p>{workout.username}</p>
+    getWorkout();
+  }, [workoutId]);
 
-		
-		{workout._id === loggedInUser._id ? <button onClick={() => props.handleDeleteWorkout(workoutId)}>Delete</button> : ''}
-		{workout._id === loggedInUser._id ? <Link to={`/workout/${workoutId}/edit`}>Edit</Link> : ''}
+  async function handleAddGoal(goalFormData) {
+    console.log(goalFormData, "<-- Goal Form Data Before Submission");
+
+    if (!goalFormData.goalType || !goalFormData.endDate) {
+      console.error("Goal type and end date are required");
+      return;
+    }
+
+    const newWorkoutDoc = await workoutService.createGoal(
+      workoutId,
+      goalFormData
+    );
+    console.log(newWorkoutDoc, "<-- Response from createGoal");
+
+    if (newWorkoutDoc && newWorkoutDoc.error) {
+      console.error(newWorkoutDoc.error);
+      return;
+    }
+
+    setWorkout((prev) => ({
+      ...prev,
+      goals: newWorkoutDoc.goals,
+    }));
+  }
+
+  if (!workout) return <main>Loading....</main>;
+
+  return (
+    <main>
+      <header>
+        <p>{workout.workoutType}</p>
+        <h1>{workout.caloriesBurned}</h1>
+        <p>{workout.goalType}</p>
+        <p>{new Date(workout.endDate).toLocaleDateString()}</p>
+
+        {workout.user === loggedInUser._id && (
+          <>
+            <button onClick={() => props.handleDeleteWorkout(workoutId)}>
+              Delete
+            </button>
+            <Link to={`/workouts/${workoutId}/edit`}>Edit</Link>
+          </>
+        )}
       </header>
-      <p>{workout.text}</p>
+      <p>{workout.notes}</p>
       <section>
         <h2>Goals</h2>
-		<GoalForm handleAddGoal={handleAddGoal}/>
-        
-        {!workout.goal.length && <p>There are no goals</p>}
+        <GoalForm handleAddGoal={handleAddGoal} />
 
-        {workout.goals.map((goal) => {
-          return (
-		  	<article key={goal._id}>
-				<header>
-					<p>{goal.username}</p>
-				</header>
-				<p>{goal.text}</p>
-			</article>
-			)
-        })}
+        {workout.goals.length === 0 ? (
+          <p>There are no goals</p>
+        ) : (
+          workout.goals.map((goal) => (
+            <article key={goal._id}>
+              <header>
+                <p>Goal Type: {goal.goalType}</p>
+              </header>
+              <p>End Date: {new Date(goal.endDate).toLocaleDateString()}</p>{" "}
+            </article>
+          ))
+        )}
       </section>
     </main>
   );
 }
-
