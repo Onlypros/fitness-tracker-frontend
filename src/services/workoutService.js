@@ -93,5 +93,26 @@ async function update(workoutId, workoutFormData) {
     console.log(err, "<-- err in the update workoutService");
   }
 }
+export async function updateGoal(workoutId, goalId, updateData) {
+  try {
+    const response = await fetch(`${BASE_URL}/${workoutId}/goals/${goalId}`, {  // Use BASE_URL for backend
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,  // Include the token if necessary
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updateData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    return await response.json(); // Parse the JSON only if there's a response body
+  } catch (error) {
+    console.error('Error updating goal:', error);
+    return { error: error.message };
+  }
+}
 
 export { index, show, create, createGoal, deleteWorkout, update };

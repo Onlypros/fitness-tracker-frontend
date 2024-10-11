@@ -42,6 +42,25 @@ export default function WorkoutDetails(props) {
     }));
   }
 
+  async function handleToggleGoalComplete(goalId, isComplete) {
+    const updatedGoal = { isComplete: !isComplete };
+    const updatedWorkout = await workoutService.updateGoal(workoutId, goalId, updatedGoal);
+
+    if (updatedWorkout && updatedWorkout.error) {
+      console.error(updatedWorkout.error);
+      return;
+    }
+
+    // Update local state with the updated goal
+    setWorkout((prev) => ({
+      ...prev,
+      goals: prev.goals.map((goal) =>
+        goal._id === goalId ? { ...goal, isComplete: !isComplete } : goal
+      ),
+    }));
+  }
+
+
   if (!workout) return <main>Loading....</main>;
 
   return (
@@ -74,6 +93,14 @@ export default function WorkoutDetails(props) {
                 <p>Goal Type: {goal.goalType}</p>
               </header>
               <p>End Date: {new Date(goal.endDate).toLocaleDateString()}</p>{" "}
+              <label>
+                Goal Complete:
+                <input
+                  type="checkbox"
+                  checked={goal.isComplete || false}
+                  onChange={() => handleToggleGoalComplete(goal._id, goal.isComplete)}
+                />
+              </label>
             </article>
           ))
         )}
