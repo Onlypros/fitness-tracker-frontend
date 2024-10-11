@@ -4,6 +4,7 @@ import * as workoutService from "../../services/workoutService";
 export default function GoalForm({ handleAddGoal }) {
   const [goalType, setGoalType] = useState("");
   const [endDate, setEndDate] = useState("");
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,9 +12,11 @@ export default function GoalForm({ handleAddGoal }) {
       alert("Please select a goal type.");
       return;
     }
-    handleAddGoal({ goalType, endDate });
+    
+    handleAddGoal({ goalType, endDate, isComplete });
     setGoalType("");
     setEndDate("");
+    setIsComplete(false);
   };
 
   return (
