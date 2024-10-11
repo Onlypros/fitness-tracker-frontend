@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import { AuthedUserContext } from "../../App";
 import { useContext } from "react";
+import styles from "./NavBar.module.css";
 
 const NavBar = ({ handleSignout }) => {
   const user = useContext(AuthedUserContext);
   return (
     <>
       {user ? (
-        <nav>
+        <nav className={styles.nav}>
           <ul>
-            <li>Welcome, {user.username}</li>
+            <li>Welcome, {user.username.toUpperCase()}</li>
             <li>
               <Link to="/">Dashboard</Link>
+            </li>
+
+            <li>
+              <Link to="/workouts">Workouts</Link>
             </li>
             <li>
               <Link to="/workouts/new">New Workout</Link>
@@ -20,9 +25,6 @@ const NavBar = ({ handleSignout }) => {
               <Link to="" onClick={handleSignout}>
                 Sign Out
               </Link>
-            </li>
-            <li>
-              <Link to="/workouts">workouts</Link>
             </li>
           </ul>
         </nav>

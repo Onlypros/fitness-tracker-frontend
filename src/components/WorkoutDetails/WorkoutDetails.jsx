@@ -3,6 +3,8 @@ import { AuthedUserContext } from "../../App";
 import { useParams, Link } from "react-router-dom";
 import * as workoutService from "../../services/workoutService";
 import GoalForm from "../GoalForm/GoalForm";
+import styles from './WorkoutDetails.module.css'
+
 
 export default function WorkoutDetails(props) {
   const [workout, setWorkout] = useState(null);
@@ -49,7 +51,7 @@ export default function WorkoutDetails(props) {
   if (!workout) return <main>Loading....</main>;
 
   return (
-    <main>
+    <main className={styles.container}>
       <header>
         <h1>Workout Type: {workout.workoutType}</h1>
         <p>Calories Burned: {workout.caloriesBurned}</p>
@@ -60,7 +62,7 @@ export default function WorkoutDetails(props) {
             <button onClick={() => props.handleDeleteWorkout(workoutId)}>
               Delete
             </button>
-            <Link to={`/workouts/${workoutId}/edit`}>Edit</Link>
+            <Link className={styles.link} to={`/workouts/${workoutId}/edit`}>Edit</Link>
           </>
         )}
       </header>

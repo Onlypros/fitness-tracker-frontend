@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as workoutService from "../../services/workoutService";
+import styles from './WorkoutForm.module.css'
+
 
 const WorkoutForm = (props) => {
   const { workoutId } = useParams();
@@ -55,7 +57,7 @@ const WorkoutForm = (props) => {
 
   return (
     <main>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.container} onSubmit={handleSubmit}>
         <h1>{workoutId ? "Edit Workout" : "New Workout"}</h1>
         <label htmlFor="workoutType-input">Workout</label>
         <input
@@ -75,7 +77,7 @@ const WorkoutForm = (props) => {
           value={formData.caloriesBurned}
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Add Workout</button>
       </form>
     </main>
   );

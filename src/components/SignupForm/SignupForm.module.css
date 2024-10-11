@@ -1,0 +1,66 @@
+.main {
+  background-color: #1c1f2e; /* Dark background */
+  color: #f1f1f1; /* Light text color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  background-color: #2a2e3b; /* Form background */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 300px; /* Set a fixed width for the form */
+}
+
+div {
+  margin-bottom: 15px; /* Spacing between input fields */
+}
+
+label {
+  display: block; /* Block display for labels */
+  margin-bottom: 5px; /* Space below labels */
+}
+
+input {
+  width: 100%; /* Full width for inputs */
+  padding: 10px; /* Padding for inputs */
+  border: 1px solid #61dafb; /* Light border */
+  border-radius: 4px;
+  background-color: #3b3f4d; /* Darker input background */
+  color: #f1f1f1; /* Light text color */
+}
+
+input:focus {
+  border-color: #00a0df; /* Highlight border on focus */
+  outline: none; /* Remove outline */
+}
+
+button {
+  width: 100%; /* Full width for buttons */
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #61dafb; /* Button background */
+  color: #1c1f2e; /* Button text color */
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #00a0df; /* Darker shade on hover */
+}
+
+button + a {
+  display: block; /* Block display for link button */
+  margin-top: 10px; /* Space above the link */
+  text-align: center; /* Center link text */
+}
