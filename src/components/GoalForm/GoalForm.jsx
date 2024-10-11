@@ -8,7 +8,7 @@ export default function GoalForm({ handleAddGoal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!goalType) {
-      alert("Please select a goal type."); // Alert if goalType is not selected
+      alert("Please select a goal type.");
       return;
     }
     handleAddGoal({ goalType, endDate });

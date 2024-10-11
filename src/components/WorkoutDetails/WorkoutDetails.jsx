@@ -11,23 +11,18 @@ export default function WorkoutDetails(props) {
   const loggedInUser = useContext(AuthedUserContext);
   const { workoutId } = useParams();
 
-  console.log(workoutId, "Workout ID");
-
   useEffect(() => {
     async function getWorkout() {
       const workoutData = await workoutService.show(workoutId);
       setWorkout({ ...workoutData, goals: workoutData.goals || [] });
-      console.log(workoutData, "<-- workoutData"); // Log the data
     }
 
     getWorkout();
   }, [workoutId]);
 
   async function handleAddGoal(goalFormData) {
-    console.log(goalFormData, "<-- Goal Form Data Before Submission");
 
     if (!goalFormData.goalType || !goalFormData.endDate) {
-      console.error("Goal type and end date are required");
       return;
     }
 
@@ -35,7 +30,6 @@ export default function WorkoutDetails(props) {
       workoutId,
       goalFormData
     );
-    console.log(newWorkoutDoc, "<-- Response from createGoal");
 
     if (newWorkoutDoc && newWorkoutDoc.error) {
       console.error(newWorkoutDoc.error);
