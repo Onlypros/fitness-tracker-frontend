@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 import * as workoutService from "../../services/workoutService";
 
 export default function GoalForm({ handleAddGoal }) {

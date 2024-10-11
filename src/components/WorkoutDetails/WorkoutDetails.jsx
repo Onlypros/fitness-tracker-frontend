@@ -3,6 +3,8 @@ import { AuthedUserContext } from "../../App";
 import { useParams, Link } from "react-router-dom";
 import * as workoutService from "../../services/workoutService";
 import GoalForm from "../GoalForm/GoalForm";
+import styles from './WorkoutDetails.module.css'
+
 
 export default function WorkoutDetails(props) {
   const [workout, setWorkout] = useState(null);
@@ -49,26 +51,25 @@ export default function WorkoutDetails(props) {
   if (!workout) return <main>Loading....</main>;
 
   return (
-    <main>
+    <main className={styles.container}>
       <header>
-        <p>{workout.workoutType}</p>
-        <h1>{workout.caloriesBurned}</h1>
+        <h1>Workout Type: {workout.workoutType}</h1>
+        <p>Calories Burned: {workout.caloriesBurned}</p>
         <p>{workout.goalType}</p>
-        <p>{new Date(workout.endDate).toLocaleDateString()}</p>
 
         {workout.user === loggedInUser._id && (
           <>
             <button onClick={() => props.handleDeleteWorkout(workoutId)}>
               Delete
             </button>
-            <Link to={`/workouts/${workoutId}/edit`}>Edit</Link>
+            <Link className={styles.link} to={`/workouts/${workoutId}/edit`}>Edit</Link>
           </>
         )}
       </header>
       <p>{workout.notes}</p>
       <section>
-        <h2>Goals</h2>
         <GoalForm handleAddGoal={handleAddGoal} />
+        <h2>Goals</h2>
 
         {workout.goals.length === 0 ? (
           <p>There are no goals</p>
