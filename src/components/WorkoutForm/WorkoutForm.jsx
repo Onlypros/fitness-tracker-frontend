@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as workoutService from "../../services/workoutService";
-import styles from './WorkoutForm.module.css'
-
+import styles from "./WorkoutForm.module.css";
 
 const WorkoutForm = (props) => {
   const { workoutId } = useParams();
 
   const [formData, setFormData] = useState({
     workoutType: "",
-    caloriesBurned: "", // Initialize as an empty string
+    caloriesBurned: "",
+    notes: "", // Initialize as an empty string
   });
 
   useEffect(() => {
@@ -21,6 +21,7 @@ const WorkoutForm = (props) => {
           setFormData({
             workoutType: workoutData.workoutType || "",
             caloriesBurned: workoutData.caloriesBurned || "",
+            notes: workoutData.notes || "",
           });
         }
       } catch (error) {
@@ -77,6 +78,13 @@ const WorkoutForm = (props) => {
           value={formData.caloriesBurned}
           onChange={handleChange}
         />
+        <label htmlFor="notes-input">Notes</label>
+        <textarea
+          name="notes"
+          id="notes"
+          value={formData.notes}
+          onChange={handleChange}
+        ></textarea>
         <button type="submit">Add Workout</button>
       </form>
     </main>

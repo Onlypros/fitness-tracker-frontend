@@ -52,3 +52,21 @@ button:hover {
   background-color: #f1f1f1;
   color: #1c1f2e;
 }
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #3c3f54;
+  border-radius: 4px;
+  background-color: #2a2e3b;
+  color: #f1f1f1;
+  resize: vertical; 
+  min-height: 100px;
+}
+
+textarea:focus {
+  border-color: #61dafb;
+  outline: none;
+}

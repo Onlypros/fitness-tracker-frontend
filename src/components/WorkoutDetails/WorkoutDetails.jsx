@@ -79,7 +79,7 @@ export default function WorkoutDetails(props) {
           </>
         )}
       </header>
-      <p>{workout.notes}</p>
+      <p>Notes: {workout.notes}</p>
       <section>
         <GoalForm handleAddGoal={handleAddGoal} />
         <h2>Goals</h2>
@@ -92,6 +92,7 @@ export default function WorkoutDetails(props) {
               <header>
                 <p>Goal Type: {goal.goalType}</p>
               </header>
+          
               <p>End Date: {new Date(goal.endDate).toLocaleDateString()}</p>{" "}
               <label>
                 Goal Complete:
