@@ -5,7 +5,6 @@ import * as workoutService from "../../services/workoutService";
 import GoalForm from "../GoalForm/GoalForm";
 import styles from './WorkoutDetails.module.css'
 
-
 export default function WorkoutDetails(props) {
   const [workout, setWorkout] = useState(null);
   const loggedInUser = useContext(AuthedUserContext);
@@ -16,26 +15,21 @@ export default function WorkoutDetails(props) {
       const workoutData = await workoutService.show(workoutId);
       setWorkout({ ...workoutData, goals: workoutData.goals || [] });
     }
-
     getWorkout();
   }, [workoutId]);
 
   async function handleAddGoal(goalFormData) {
-
     if (!goalFormData.goalType || !goalFormData.endDate) {
       return;
     }
-
     const newWorkoutDoc = await workoutService.createGoal(
       workoutId,
       goalFormData
     );
-
     if (newWorkoutDoc && newWorkoutDoc.error) {
       console.error(newWorkoutDoc.error);
       return;
     }
-
     setWorkout((prev) => ({
       ...prev,
       goals: newWorkoutDoc.goals,
@@ -45,13 +39,10 @@ export default function WorkoutDetails(props) {
   async function handleToggleGoalComplete(goalId, isComplete) {
     const updatedGoal = { isComplete: !isComplete };
     const updatedWorkout = await workoutService.updateGoal(workoutId, goalId, updatedGoal);
-
     if (updatedWorkout && updatedWorkout.error) {
       console.error(updatedWorkout.error);
       return;
     }
-
-    // Update local state with the updated goal
     setWorkout((prev) => ({
       ...prev,
       goals: prev.goals.map((goal) =>
@@ -59,17 +50,14 @@ export default function WorkoutDetails(props) {
       ),
     }));
   }
-
-
   if (!workout) return <main>Loading....</main>;
-
+  
   return (
     <main className={styles.container}>
       <header>
         <h1>Workout Type: {workout.workoutType}</h1>
         <p>Calories Burned: {workout.caloriesBurned}</p>
         <p>{workout.goalType}</p>
-
         {workout.user === loggedInUser._id && (
           <>
             <button onClick={() => props.handleDeleteWorkout(workoutId)}>
@@ -83,7 +71,6 @@ export default function WorkoutDetails(props) {
       <section>
         <GoalForm handleAddGoal={handleAddGoal} />
         <h2>Goals</h2>
-
         {workout.goals.length === 0 ? (
           <p>There are no goals</p>
         ) : (
@@ -92,7 +79,6 @@ export default function WorkoutDetails(props) {
               <header>
                 <p>Goal Type: {goal.goalType}</p>
               </header>
-          
               <p>End Date: {new Date(goal.endDate).toLocaleDateString()}</p>{" "}
               <label>
                 Goal Complete:
@@ -105,6 +91,7 @@ export default function WorkoutDetails(props) {
             </article>
           ))
         )}
+        <Link className={styles.link} to={"/workouts"}>Back to Workouts</Link>
       </section>
     </main>
   );
