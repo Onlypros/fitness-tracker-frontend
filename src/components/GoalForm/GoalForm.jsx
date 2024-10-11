@@ -4,7 +4,7 @@ import * as workoutService from "../../services/workoutService";
 export default function GoalForm({ handleAddGoal }) {
   const [goalType, setGoalType] = useState("");
   const [endDate, setEndDate] = useState("");
-  
+  const [isComplete, setIsComplete] = useState()
 
   const handleSubmit = (e) => {
     e.preventDefault();
