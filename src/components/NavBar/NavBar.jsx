@@ -28,7 +28,7 @@ const NavBar = ({ handleSignout }) => {
         <div className={styles.welcomeMessage}>
           {user
             ? `Welcome, ${user.username.toUpperCase()}`
-            : "Welcome! Please sign in."}
+            : ""}
         </div>
         <ul className={`${styles.navList} ${isMenuOpen ? styles.active : ""}`}>
           {user ? (
