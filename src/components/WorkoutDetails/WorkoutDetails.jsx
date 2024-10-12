@@ -55,9 +55,11 @@ export default function WorkoutDetails(props) {
   return (
     <main className={styles.container}>
       <header>
-        <h1>Workout Type: {workout.workoutType}</h1>
-        <p>Calories Burned: {workout.caloriesBurned}</p>
+        <h1>Workout: {workout.workoutType}</h1>
+        <p><strong>Calories Burned:</strong> {workout.caloriesBurned}</p>
         <p>{workout.goalType}</p>
+        <p><strong>Notes:</strong> {workout.notes}</p>
+        <p><strong>Date of Workout:</strong> {new Date(workout.startDate).toLocaleDateString()}</p>
         {workout.user === loggedInUser._id && (
           <>
             <button onClick={() => props.handleDeleteWorkout(workoutId)}>
@@ -67,7 +69,7 @@ export default function WorkoutDetails(props) {
           </>
         )}
       </header>
-      <p>Notes: {workout.notes}</p>
+      <Link className={styles.link} to={"/workouts"}>Back to Workouts</Link>
       <section>
         <GoalForm handleAddGoal={handleAddGoal} />
         <h2>Goals</h2>
@@ -91,7 +93,6 @@ export default function WorkoutDetails(props) {
             </article>
           ))
         )}
-        <Link className={styles.link} to={"/workouts"}>Back to Workouts</Link>
       </section>
     </main>
   );

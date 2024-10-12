@@ -1,0 +1,74 @@
+.container {
+  text-align: center;
+  background-color: #2a2e3b; 
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  color: white; 
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.content {
+  margin: 20px 0;
+}
+
+.subtitle {
+  color: white; 
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.signupButton {
+  background-color: #61dafb; 
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-decoration: none; 
+  transition: background-color 0.3s;
+}
+
+.signupButton:hover {
+  background-color: #00a0df; 
+}
+
+.footer {
+  margin-top: 40px;
+}
+
+.motivationQuote {
+  color: white;
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.benefits {
+  margin: 30px 0;
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.benefits h2 {
+  color: #2a2e3b; 
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.benefits ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.benefits li {
+  color: #4a4a4a; 
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
