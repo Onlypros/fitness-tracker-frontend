@@ -4,7 +4,8 @@ import styles from "./Landing.module.css";
 const Landing = () => {
   return (
     <main className={styles.container}>
-      <h1 className={styles.title}>Stay Motivated, Stay Focused, Stay Fit!</h1>
+      <h1 className={styles.title}>Welcome to Active Vibe!!</h1>
+      <h3 className={styles.title}>Stay Motivated, Stay Focused, Stay Fit!</h3>
       <div className={styles.content}>
         <h3 className={styles.subtitle}>
           Your fitness goals are within reach, and we’re here to help you get
