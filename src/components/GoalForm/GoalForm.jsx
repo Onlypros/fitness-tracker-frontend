@@ -1,22 +1,21 @@
-import { useState, } from "react";
-import * as workoutService from "../../services/workoutService";
+import { useState } from "react";
 
 export default function GoalForm({ handleAddGoal }) {
   const [goalType, setGoalType] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [isComplete, setIsComplete] = useState()
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if (!goalType) {
       alert("Please select a goal type.");
       return;
     }
-    
-    handleAddGoal({ goalType, endDate, isComplete });
+
+   
+    handleAddGoal({ goalType, endDate, isComplete: false }); 
     setGoalType("");
     setEndDate("");
-    setIsComplete(false);
   };
 
   return (

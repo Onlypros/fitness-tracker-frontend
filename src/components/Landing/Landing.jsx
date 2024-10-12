@@ -1,14 +1,36 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import styles from "./Landing.module.css";
 
 const Landing = () => {
   return (
-    <main>
-      <h1>Stay Motivated, Stay Focused, Stay Fit!</h1>
-        <div className="landing-h3">
-          <h3>Your fitness goals are within reach, and we’re here to help you get there. Set your workout goals, track your achievements, and get the motivation you need to stay consistent. Whether you're a beginner or a pro, this is the ultimate tool to push yourself further. Create an account today and start your journey towards a healthier, stronger you!</h3>
-          <Link to="/signup" className="signup-link">Sign Up Now!</Link>
-        </div>
-      </main>
+    <main className={styles.container}>
+      <h1 className={styles.title}>Stay Motivated, Stay Focused, Stay Fit!</h1>
+      <div className={styles.content}>
+        <h3 className={styles.subtitle}>
+          Your fitness goals are within reach, and we’re here to help you get
+          there. Set your workout goals, track your achievements, and get the
+          motivation you need to stay consistent. Whether you're a beginner or a
+          pro, this is the ultimate tool to push yourself further.
+        </h3>
+        <Link to="/signup" className={styles.signupButton}>
+          Sign Up Now!
+        </Link>
+      </div>
+
+      <section className={styles.benefits}>
+        <h2>Why Choose Us?</h2>
+        <ul>
+          <li>🎯 Personalized Goal Setting</li>
+          <li>📊 Progress Tracking</li>
+        </ul>
+      </section>
+
+      <footer className={styles.footer}>
+        <p className={styles.motivationQuote}>
+          “The journey of a thousand miles begins with one step.” - Lao Tzu
+        </p>
+      </footer>
+    </main>
   );
 };
 

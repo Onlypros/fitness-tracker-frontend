@@ -9,19 +9,22 @@ const WorkoutForm = (props) => {
   const [formData, setFormData] = useState({
     workoutType: "",
     caloriesBurned: "",
-    notes: "", // Initialize as an empty string
+    notes: "",
+    startDate: "", 
   });
 
   useEffect(() => {
     async function fetchWorkout() {
       try {
         const workoutData = await workoutService.show(workoutId);
-        // Check if workoutData has the expected structure
         if (workoutData) {
           setFormData({
             workoutType: workoutData.workoutType || "",
             caloriesBurned: workoutData.caloriesBurned || "",
             notes: workoutData.notes || "",
+            startDate: workoutData.startDate
+              ? new Date(workoutData.startDate).toISOString().substring(0, 10)
+              : "",
           });
         }
       } catch (error) {
@@ -36,7 +39,6 @@ const WorkoutForm = (props) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    // For caloriesBurned, convert value to number
     setFormData({
       ...formData,
       [name]: name === "caloriesBurned" ? Number(value) : value,
@@ -45,7 +47,6 @@ const WorkoutForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("formData", formData);
 
     if (workoutId) {
       // Update existing workout
@@ -85,7 +86,18 @@ const WorkoutForm = (props) => {
           value={formData.notes}
           onChange={handleChange}
         ></textarea>
-        <button type="submit">Add Workout</button>
+        <label htmlFor="startDate-input">Date of Workout</label>
+        <input
+          required
+          type="date"
+          name="startDate"
+          id="startDate-input"
+          value={formData.startDate}
+          onChange={handleChange}
+        />
+        <button type="submit">
+          {workoutId ? "Update Workout" : "Add Workout"}
+        </button>
       </form>
     </main>
   );
