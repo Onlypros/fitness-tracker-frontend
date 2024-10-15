@@ -6,6 +6,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   max-width: 600px;
   margin: 40px auto;
+  min-height: 80vh; 
 }
 
 header {
@@ -32,6 +33,11 @@ button:hover {
   color: #1c1f2e;
 }
 
+button:focus {
+  outline: 2px solid #61dafb; 
+  outline-offset: 2px;
+}
+
 .link {
   display: inline-block;
   background-color: #007bff;
@@ -44,8 +50,13 @@ button:hover {
   cursor: pointer;
 }
 
-.ink:hover {
+.link:hover {
   background-color: #0056b3;
+}
+
+.link:focus {
+  outline: 2px solid #61dafb; 
+  outline-offset: 2px;
 }
 
 section {
@@ -60,7 +71,7 @@ article {
 }
 
 p {
-  margin: 5px 0;
+  margin: 10px 0; 
 }
 
 label {
@@ -135,6 +146,22 @@ label {
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
 strong {
   color: white;
+}
+
+
+@media (max-width: 600px) {
+  button {
+    padding: 8px 12px; 
+  }
+
+  .link {
+    padding: 8px 12px; 
+  }
+
+  .container {
+    padding: 15px; 
+  }
 }

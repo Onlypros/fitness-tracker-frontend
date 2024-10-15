@@ -1,6 +1,6 @@
 .container {
   text-align: center;
-  background-color: #2a2e3b; 
+  background-color: #353c4d; 
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -31,27 +31,31 @@
   font-size: 1.2rem;
   cursor: pointer;
   text-decoration: none; 
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
 
 .signupButton:hover {
   background-color: #00a0df; 
+  transform: scale(1.05); 
 }
 
 .footer {
-  margin-top: 40px;
+  margin-top: 60px; 
 }
 
 .motivationQuote {
   color: white;
   font-style: italic;
-  font-size: 1rem;
+  font-size: 1.1rem; 
+  font-weight: 400; 
+  margin-top: 20px; 
 }
 
 .benefits {
   margin: 30px 0;
   background-color: rgba(255, 255, 255, 0.8); 
-  padding: 20px;
+  padding: 30px; 
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -71,4 +75,10 @@
   color: #4a4a4a; 
   font-size: 1.1rem;
   margin: 10px 0;
+  transition: color 0.2s; 
+}
+
+.benefits li:hover {
+  color: #61dafb; 
+  cursor: pointer; 
 }
