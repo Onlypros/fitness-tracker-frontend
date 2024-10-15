@@ -28,31 +28,39 @@ select {
   background-color: #2a2e3b;
   color: #f1f1f1;
   font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
 input::placeholder {
   color: #888;
 }
 
+input:hover,
+select:hover {
+  border-color: #61dafb;
+}
+
 .workoutList {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 10px;
 }
 
 .article {
   background-color: #2a2e3b;
   border: 1px solid #3c3f54;
   border-radius: 8px;
-  padding: 15px;
+  padding: 20px;
   margin: 10px;
   width: 300px;
-  transition: transform 0.2s;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
 .article:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #3c3f54;
 }
 
 header {
@@ -62,11 +70,12 @@ header {
 h2 {
   font-size: 1.5rem;
   color: #61dafb;
+  margin: 20px 0;
 }
 
 p {
   font-size: 1rem;
-  color: #f1f1f1;
+  color: #e0e0e0;
 }
 
 .link {
@@ -75,6 +84,7 @@ p {
   display: block;
   padding: 10px;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 .link:hover {

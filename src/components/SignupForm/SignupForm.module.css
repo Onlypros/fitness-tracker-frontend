@@ -1,12 +1,13 @@
 .main {
-  background-color: #1c1f2e; 
-  color: #f1f1f1; 
+  background-color: #1c1f2e;
+  color: #f1f1f1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; 
+  height: 100vh;
   padding: 20px;
+  max-width: 100vw;
 }
 
 h1 {
@@ -14,53 +15,67 @@ h1 {
 }
 
 form {
-  background-color: #2a2e3b; 
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  width: 300px; 
+  background-color: #252a38;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  width: 320px;
 }
 
 div {
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
 }
 
 label {
-  display: block; 
-  margin-bottom: 5px; 
+  display: block;
+  margin-bottom: 5px;
 }
 
 input {
-  width: 100%; 
-  padding: 10px; 
-  border: 1px solid #61dafb; 
-  border-radius: 4px;
-  background-color: #3b3f4d; 
-  color: #f1f1f1; 
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #61dafb;
+  border-radius: 6px;
+  background-color: #3b3f4d;
+  color: #f1f1f1;
+  transition: border-color 0.2s ease;
 }
 
 input:focus {
-  border-color: #00a0df; 
-  outline: none; 
+  border-color: #00a0df;
+  outline: none;
 }
 
 button {
-  width: 100%; 
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
-  background-color: #61dafb; 
-  color: #1c1f2e; 
+  background-color: #61dafb;
+  color: #1c1f2e;
   font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #00a0df; 
+  background-color: #00a0df;
+  transform: scale(1.05);
 }
 
 button + a {
-  display: block; 
-  margin-top: 10px; 
-  text-align: center; 
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #61dafb;
+  text-decoration: none;
+}
+
+button + a:hover {
+  color: #00a0df;
+}
+
+button:focus,
+input:focus {
+  outline: 2px solid #00a0df;
 }
