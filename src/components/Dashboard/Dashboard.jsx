@@ -2,6 +2,8 @@ import { AuthedUserContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import * as workoutService from "../../services/workoutService";
 import styles from "./Dashboard.module.css";
+import GymSearch from "../GymSearch/GymSearch";
+
 
 const Dashboard = () => {
   const user = useContext(AuthedUserContext);
@@ -45,6 +47,7 @@ const Dashboard = () => {
 
   return (
     <main className={styles.container}>
+      
       <h1>Welcome, {user.username}</h1>
       <p>
         This is the dashboard page where you, and only you, can see a dashboard
@@ -82,6 +85,9 @@ const Dashboard = () => {
           <p>No recent workouts found.</p>
         )}
       </div>
+      <section>
+        <GymSearch />
+      </section>
     </main>
   );
 };

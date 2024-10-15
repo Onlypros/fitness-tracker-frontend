@@ -5,6 +5,7 @@ import * as workoutService from "../../services/workoutService";
 import GoalForm from "../GoalForm/GoalForm";
 import styles from './WorkoutDetails.module.css'
 
+
 export default function WorkoutDetails(props) {
   const [workout, setWorkout] = useState(null);
   const loggedInUser = useContext(AuthedUserContext);
@@ -54,6 +55,7 @@ export default function WorkoutDetails(props) {
   
   return (
     <main className={styles.container}>
+      
       <header>
         <h1>Workout: {workout.workoutType}</h1>
         <p><strong>Calories Burned:</strong> {workout.caloriesBurned}</p>
