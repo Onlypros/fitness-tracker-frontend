@@ -47,7 +47,7 @@ export default function GymSearch() {
       <h2>Search for Gyms</h2>
       <input
         type="text"
-        placeholder="Enter location"
+        placeholder="Enter location(City, State, or Zip)"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
