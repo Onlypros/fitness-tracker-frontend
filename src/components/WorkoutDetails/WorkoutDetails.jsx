@@ -3,7 +3,7 @@ import { AuthedUserContext } from "../../App";
 import { useParams, Link } from "react-router-dom";
 import * as workoutService from "../../services/workoutService";
 import GoalForm from "../GoalForm/GoalForm";
-import styles from './WorkoutDetails.module.css'
+import styles from "./WorkoutDetails.module.css";
 
 
 export default function WorkoutDetails(props) {
@@ -39,7 +39,11 @@ export default function WorkoutDetails(props) {
 
   async function handleToggleGoalComplete(goalId, isComplete) {
     const updatedGoal = { isComplete: !isComplete };
-    const updatedWorkout = await workoutService.updateGoal(workoutId, goalId, updatedGoal);
+    const updatedWorkout = await workoutService.updateGoal(
+      workoutId,
+      goalId,
+      updatedGoal
+    );
     if (updatedWorkout && updatedWorkout.error) {
       console.error(updatedWorkout.error);
       return;
@@ -52,26 +56,37 @@ export default function WorkoutDetails(props) {
     }));
   }
   if (!workout) return <main>Loading....</main>;
-  
+
   return (
     <main className={styles.container}>
       
       <header>
         <h1>Workout: {workout.workoutType}</h1>
-        <p><strong>Calories Burned:</strong> {workout.caloriesBurned}</p>
+        <p>
+          <strong>Calories Burned:</strong> {workout.caloriesBurned}
+        </p>
         <p>{workout.goalType}</p>
-        <p><strong>Notes:</strong> {workout.notes}</p>
-        <p><strong>Date of Workout:</strong> {new Date(workout.startDate).toLocaleDateString()}</p>
+        <p>
+          <strong>Notes:</strong> {workout.notes}
+        </p>
+        <p>
+          <strong>Date of Workout:</strong>{" "}
+          {new Date(workout.startDate).toLocaleDateString()}
+        </p>
         {workout.user === loggedInUser._id && (
           <>
             <button onClick={() => props.handleDeleteWorkout(workoutId)}>
               Delete
             </button>
-            <Link className={styles.link} to={`/workouts/${workoutId}/edit`}>Edit</Link>
+            <Link className={styles.link} to={`/workouts/${workoutId}/edit`}>
+              Edit
+            </Link>
           </>
         )}
       </header>
-      <Link className={styles.link} to={"/workouts"}>Back to Workouts</Link>
+      <Link className={styles.link} to={"/workouts"}>
+        Back to Workouts
+      </Link>
       <section>
         <GoalForm handleAddGoal={handleAddGoal} />
         <h2>Goals</h2>
@@ -83,14 +98,19 @@ export default function WorkoutDetails(props) {
               <header>
                 <p>Goal Type: {goal.goalType}</p>
               </header>
-              <p>End Date: {new Date(goal.endDate).toLocaleDateString()}</p>{" "}
-              <label>
-                Goal Complete:
-                <input
-                  type="checkbox"
-                  checked={goal.isComplete || false}
-                  onChange={() => handleToggleGoalComplete(goal._id, goal.isComplete)}
-                />
+              <p>End Date: {new Date(goal.endDate).toLocaleDateString()}</p>
+              <label className={styles.checkboxContainer}>
+                Goal Complete
+                <div className={styles.checkboxWrapper}>
+                  <input
+                    type="checkbox"
+                    checked={goal.isComplete || false}
+                    onChange={() =>
+                      handleToggleGoalComplete(goal._id, goal.isComplete)
+                    }
+                  />
+                  <span className={styles.checkmark}></span>
+                </div>
               </label>
             </article>
           ))
