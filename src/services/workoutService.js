@@ -23,7 +23,6 @@ async function show(workoutId) {
     }
     
     const data = await response.json();
-    // Updated this to ensure the goals are always an array!
     return { ...data, goals: data.goals || [] };
   } catch (err) {
     console.log(err, "<-- err in show workoutService");
@@ -95,10 +94,10 @@ async function update(workoutId, workoutFormData) {
 }
 export async function updateGoal(workoutId, goalId, updateData) {
   try {
-    const response = await fetch(`${BASE_URL}/${workoutId}/goals/${goalId}`, {  // Use BASE_URL for backend
+    const response = await fetch(`${BASE_URL}/${workoutId}/goals/${goalId}`, {
       method: 'PUT',
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,  // Include the token if necessary
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(updateData),
@@ -108,7 +107,7 @@ export async function updateGoal(workoutId, goalId, updateData) {
       throw new Error(`Error: ${response.statusText}`);
     }
 
-    return await response.json(); // Parse the JSON only if there's a response body
+    return await response.json();
   } catch (error) {
     console.error('Error updating goal:', error);
     return { error: error.message };

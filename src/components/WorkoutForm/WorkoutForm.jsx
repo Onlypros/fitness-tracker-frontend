@@ -49,10 +49,8 @@ const WorkoutForm = (props) => {
     event.preventDefault();
 
     if (workoutId) {
-      // Update existing workout
       props.handleUpdateWorkout(workoutId, formData);
     } else {
-      // Add new workout
       props.handleAddWorkout(formData);
     }
   };

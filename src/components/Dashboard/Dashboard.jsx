@@ -4,7 +4,6 @@ import * as workoutService from "../../services/workoutService";
 import styles from "./Dashboard.module.css";
 import GymSearch from "../GymSearch/GymSearch";
 
-
 const Dashboard = () => {
   const user = useContext(AuthedUserContext);
   const [recentWorkouts, setRecentWorkouts] = useState([]);
@@ -48,7 +47,7 @@ const Dashboard = () => {
   return (
     <main className={styles.container}>
       
-      <h1>Welcome, {user.username}</h1>
+      <h1>Welcome, {user.username.toUpperCase()}</h1>
       <p>
         This is the dashboard page where you, and only you, can see a dashboard
         of all of your things.
@@ -66,7 +65,6 @@ const Dashboard = () => {
         </p>
       </div>
 
-     
       <div className={styles.recentWorkoutsContainer}>
         <h2>Recent Workouts</h2>
         {recentWorkouts.length > 0 ? (

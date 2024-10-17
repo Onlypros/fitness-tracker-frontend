@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLoadScript } from "@react-google-maps/api";
-
 import './GymSearch.module.css';
 
 const libraries = ["places"]; 
