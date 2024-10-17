@@ -48,10 +48,6 @@ const Dashboard = () => {
     <main className={styles.container}>
       
       <h1>Welcome, {user.username.toUpperCase()}</h1>
-      <p>
-        This is the dashboard page where you, and only you, can see a dashboard
-        of all of your things.
-      </p>
       <div className={styles.statsContainer}>
         <p>
           <strong>Total Workouts:</strong> {totalWorkouts}
