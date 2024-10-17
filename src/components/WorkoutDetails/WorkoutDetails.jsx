@@ -104,6 +104,8 @@ export default function WorkoutDetails(props) {
                 Goal Complete
                 <div className={styles.checkboxWrapper}>
                   <input
+                    id={`goal-complete-${goal._id}`}
+                    name={`goal-complete-${goal._id}`}
                     type="checkbox"
                     checked={goal.isComplete || false}
                     onChange={() =>
