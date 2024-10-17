@@ -2,6 +2,9 @@
 
 ![Home Page](./src/assets/home-page.png)
 
+## Getting Started
+- To visit the website click [here](https://active-vibe.netlify.app/)
+
 ## Description
 
 The Active Vibe App is a web-based application designed to help users track their workouts and set fitness goals. The app allows users to create accounts, log workouts, set goals, and monitor their progress over time. Users can log in to view, edit, or delete workouts and goals to stay on top of their fitness journey.
