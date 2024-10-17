@@ -12,7 +12,6 @@ export default function GoalForm({ handleAddGoal }) {
       return;
     }
 
-   
     handleAddGoal({ goalType, endDate, isComplete: false }); 
     setGoalType("");
     setEndDate("");

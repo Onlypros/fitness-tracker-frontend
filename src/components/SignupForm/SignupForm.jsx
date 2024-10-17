@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../../services/authService';
 import styles from './SignupForm.module.css'
 
-
 const SignupForm = (props) => {
   const navigate = useNavigate();
   const [message, setMessage] = useState(['']);

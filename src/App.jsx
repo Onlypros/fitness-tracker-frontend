@@ -9,14 +9,13 @@ import WorkoutList from "./components/WorkoutList/WorkoutList";
 import WorkoutForm from "./components/WorkoutForm/WorkoutForm";
 import WorkoutDetails from "./components/WorkoutDetails/WorkoutDetails";
 
-// these are our service files
-import * as authService from "../src/services/authService"; // import the authservice
+import * as authService from "../src/services/authService"; 
 import * as workoutService from "../src/services/workoutService";
 
 export const AuthedUserContext = createContext(null);
 
 const App = () => {
-  const [user, setUser] = useState(authService.getUser()); // using the method from authservice
+  const [user, setUser] = useState(authService.getUser()); 
   const [workouts, setWorkouts] = useState([]);
 
   const navigate = useNavigate();
@@ -56,7 +55,6 @@ const App = () => {
       const workoutData = await workoutService.index();
       setWorkouts(workoutData);
     }
-    // check if we are logged in before we fetch!
     if (user) {
       fetchAllworkouts();
     }

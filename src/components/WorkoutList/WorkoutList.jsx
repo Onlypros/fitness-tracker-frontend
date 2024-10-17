@@ -11,18 +11,21 @@ export default function WorkoutList({ workouts }) {
     const matchesWorkoutType = workout.workoutType
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
+  
     const matchesGoalType =
       selectedGoalType === "All" ||
       workout.goals.some((goal) =>
         goal.goalType.toLowerCase().includes(selectedGoalType.toLowerCase())
       );
+  
     const matchesIsComplete =
       isCompleteFilter === "All" ||
       (isCompleteFilter === "No Goals" && workout.goals.length === 0) ||
       (isCompleteFilter === "Complete" &&
-        workout.goals.some((goal) => goal.isComplete)) ||
+        workout.goals.some((goal) => goal.isComplete === true)) ||
       (isCompleteFilter === "Incomplete" &&
-        workout.goals.some((goal) => !goal.isComplete));
+        workout.goals.some((goal) => goal.isComplete === false));
+  
     return matchesWorkoutType && matchesGoalType && matchesIsComplete;
   });
 
@@ -75,7 +78,10 @@ export default function WorkoutList({ workouts }) {
         </select>
         <select
           value={isCompleteFilter}
-          onChange={(e) => setIsCompleteFilter(e.target.value)}
+          onChange={(e) => {
+            console.log("Selected value:", e.target.value);
+            setIsCompleteFilter(e.target.value);
+          }}
         >
           <option value="All">All Goals</option>
           <option value="Complete">Completed Goals</option>
@@ -89,7 +95,3 @@ export default function WorkoutList({ workouts }) {
     </div>
   );
 }
-
-// Notes
-// If theres a change made on goals from complete/incomplete you need to refresh /workouts for the changes to be applied to the filters
-// Need to change that so it happens right away

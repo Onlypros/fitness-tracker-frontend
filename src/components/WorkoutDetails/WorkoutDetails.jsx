@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import * as workoutService from "../../services/workoutService";
 import GoalForm from "../GoalForm/GoalForm";
 import styles from "./WorkoutDetails.module.css";
-
+import ProgressPhoto from "../ProgressPhoto/ProgressPhoto";
 
 export default function WorkoutDetails(props) {
   const [workout, setWorkout] = useState(null);
@@ -87,6 +87,7 @@ export default function WorkoutDetails(props) {
       <Link className={styles.link} to={"/workouts"}>
         Back to Workouts
       </Link>
+        <ProgressPhoto />
       <section>
         <GoalForm handleAddGoal={handleAddGoal} />
         <h2>Goals</h2>
