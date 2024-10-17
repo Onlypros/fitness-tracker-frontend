@@ -45,6 +45,8 @@ export default function GymSearch() {
     <div className="gym-search-container">
       <h2>Search for Gyms</h2>
       <input
+        id ="gymsearch"
+        name ="gymsearch"
         type="text"
         placeholder="Enter location(City, State, or Zip)"
         value={searchTerm}

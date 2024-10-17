@@ -80,7 +80,7 @@ const WorkoutForm = (props) => {
         <label htmlFor="notes-input">Notes</label>
         <textarea
           name="notes"
-          id="notes"
+          id="notes-input"
           value={formData.notes}
           onChange={handleChange}
         ></textarea>
