@@ -4,7 +4,8 @@
 
 ## Getting Started
 - To visit the website click [here](https://active-vibe.netlify.app/)
-
+- To view the full planning materials visit our [Trello Board](https://trello.com/b/A0sJcLBB/fitness-tracker)
+- To view the backend repo please click [here](https://github.com/andrewreese16/fitness-tracker-backend)
 ## Description
 
 The Active Vibe App is a web-based application designed to help users track their workouts and set fitness goals. The app allows users to create accounts, log workouts, set goals, and monitor their progress over time. Users can log in to view, edit, or delete workouts and goals to stay on top of their fitness journey.
@@ -63,8 +64,9 @@ The Active Vibe App is a web-based application designed to help users track thei
 - React: Frontend framework 
 - JWT: User authenication 
 
-## Planning Materials
-- To view the full planning materials visit our [Trello Board](https://trello.com/b/A0sJcLBB/fitness-tracker)
+## Future Plans
+- Develop this into a mobile app
+- Add workout tracking charts
 
 ## Contributors GitHub
 - [Andrew Reese](https://github.com/andrewreese16)
