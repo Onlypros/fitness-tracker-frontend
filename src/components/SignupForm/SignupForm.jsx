@@ -45,8 +45,9 @@ const SignupForm = (props) => {
         <div>
           <label htmlFor="username">Username:</label>
           <input
+            autoComplete="username"
             type="text"
-            id="name"
+            id="username"
             value={username}
             name="username"
             onChange={handleChange}
@@ -55,6 +56,7 @@ const SignupForm = (props) => {
         <div>
           <label htmlFor="password">Password:</label>
           <input
+            autoComplete="current-password"
             type="password"
             id="password"
             value={password}
@@ -65,6 +67,7 @@ const SignupForm = (props) => {
         <div>
           <label htmlFor="confirm">Confirm Password:</label>
           <input
+            autoComplete="confirm"
             type="password"
             id="confirm"
             value={passwordConf}

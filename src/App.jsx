@@ -79,7 +79,7 @@ const App = () => {
               <Route
                 path="/workouts/:workoutId"
                 element={
-                  <WorkoutDetails handleDeleteWorkout={handleDeleteWorkout} />
+                  <WorkoutDetails workouts={workouts} setWorkouts={setWorkouts} handleDeleteWorkout={handleDeleteWorkout} />
                 }
               />
               <Route

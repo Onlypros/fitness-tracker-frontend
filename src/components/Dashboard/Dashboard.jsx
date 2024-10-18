@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import * as workoutService from "../../services/workoutService";
 import styles from "./Dashboard.module.css";
 import GymSearch from "../GymSearch/GymSearch";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const user = useContext(AuthedUserContext);
@@ -48,10 +49,6 @@ const Dashboard = () => {
     <main className={styles.container}>
       
       <h1>Welcome, {user.username.toUpperCase()}</h1>
-      <p>
-        This is the dashboard page where you, and only you, can see a dashboard
-        of all of your things.
-      </p>
       <div className={styles.statsContainer}>
         <p>
           <strong>Total Workouts:</strong> {totalWorkouts}
@@ -70,13 +67,15 @@ const Dashboard = () => {
         {recentWorkouts.length > 0 ? (
           <ul>
             {recentWorkouts.map((workout) => (
-              <li key={workout._id}>
-                <strong>{workout.workoutType}</strong> -
-                {workout.startDate
-                  ? new Date(workout.startDate).toLocaleDateString()
-                  : "Date not available"}{" "}
-                - Calories Burned: {workout.caloriesBurned}
-              </li>
+              <Link style={{color:"white"}} key={workout._id} to={`/workouts/${workout._id}`}>
+                <li > 
+                  <strong>{workout.workoutType}</strong> -
+                  {workout.startDate
+                    ? new Date(workout.startDate).toLocaleDateString()
+                    : "Date not available"}{" "}
+                  - Calories Burned: {workout.caloriesBurned}
+                </li>
+              </Link>
             ))}
           </ul>
         ) : (

@@ -114,3 +114,8 @@ a {
   color: #61dafb;
   background-color: white;
 }
+
+input::placeholder {
+  color: #f1f1f1;
+  opacity: 1; 
+}

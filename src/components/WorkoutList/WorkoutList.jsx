@@ -62,11 +62,15 @@ export default function WorkoutList({ workouts }) {
       <div className={styles.filters}>
         <input
           type="text"
+          id="searchQuery"
+          name="searchQuery"
           placeholder="Search by workout type"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <select
+          id="goalType"
+          name="goalType"
           value={selectedGoalType}
           onChange={(e) => setSelectedGoalType(e.target.value)}
         >
@@ -77,6 +81,8 @@ export default function WorkoutList({ workouts }) {
           ))}
         </select>
         <select
+          id="completionStatus"
+          name="completionStatus"
           value={isCompleteFilter}
           onChange={(e) => {
             console.log("Selected value:", e.target.value);

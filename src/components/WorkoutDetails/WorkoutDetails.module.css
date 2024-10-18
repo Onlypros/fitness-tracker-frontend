@@ -1,5 +1,5 @@
 .container {
-  background-color: #1c1f2e;
+  background-color: #262a42;
   color: #f1f1f1;
   padding: 20px;
   border-radius: 8px;
@@ -164,4 +164,22 @@ strong {
   .container {
     padding: 15px; 
   }
+}
+
+.link[href*="/edit"] {
+  background-color: #6c757d; 
+  color: white;
+}
+
+.link[href*="/edit"]:hover {
+  background-color: #5a6268; 
+}
+
+.link[href="/workouts"] {
+  background-color: #ff5722 ;
+  color: rgb(0, 0, 0);
+}
+
+.link[href="/workouts"]:hover {
+  background-color: #e64a19;
 }

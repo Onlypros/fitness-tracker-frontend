@@ -22,6 +22,8 @@ export default function GoalForm({ handleAddGoal }) {
       <label>
         Goal Type:
         <select
+          id ="goalType"
+          name ="goalType"
           value={goalType}
           onChange={(e) => setGoalType(e.target.value)}
           required
