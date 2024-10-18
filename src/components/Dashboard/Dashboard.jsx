@@ -67,8 +67,8 @@ const Dashboard = () => {
         {recentWorkouts.length > 0 ? (
           <ul>
             {recentWorkouts.map((workout) => (
-              <Link style={{color:"white"}}to={`/workouts/${workout._id}`}>
-                <li key={workout._id}> 
+              <Link style={{color:"white"}} key={workout._id} to={`/workouts/${workout._id}`}>
+                <li > 
                   <strong>{workout.workoutType}</strong> -
                   {workout.startDate
                     ? new Date(workout.startDate).toLocaleDateString()
