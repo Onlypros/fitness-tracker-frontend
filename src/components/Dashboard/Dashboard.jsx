@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import * as workoutService from "../../services/workoutService";
 import styles from "./Dashboard.module.css";
 import GymSearch from "../GymSearch/GymSearch";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const user = useContext(AuthedUserContext);
@@ -66,13 +67,15 @@ const Dashboard = () => {
         {recentWorkouts.length > 0 ? (
           <ul>
             {recentWorkouts.map((workout) => (
-              <li key={workout._id}>
-                <strong>{workout.workoutType}</strong> -
-                {workout.startDate
-                  ? new Date(workout.startDate).toLocaleDateString()
-                  : "Date not available"}{" "}
-                - Calories Burned: {workout.caloriesBurned}
-              </li>
+              <Link style={{color:"white"}}to={`/workouts/${workout._id}`}>
+                <li key={workout._id}> 
+                  <strong>{workout.workoutType}</strong> -
+                  {workout.startDate
+                    ? new Date(workout.startDate).toLocaleDateString()
+                    : "Date not available"}{" "}
+                  - Calories Burned: {workout.caloriesBurned}
+                </li>
+              </Link>
             ))}
           </ul>
         ) : (

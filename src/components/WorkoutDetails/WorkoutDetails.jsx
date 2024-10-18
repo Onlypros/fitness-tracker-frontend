@@ -4,7 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import * as workoutService from "../../services/workoutService";
 import GoalForm from "../GoalForm/GoalForm";
 import styles from "./WorkoutDetails.module.css";
-// import ProgressPhoto from "../ProgressPhoto/ProgressPhoto";
+import ProgressPhoto from "../ProgressPhoto/ProgressPhoto";
 
 export default function WorkoutDetails(props) {
   const [workout, setWorkout] = useState(null);
@@ -19,6 +19,14 @@ export default function WorkoutDetails(props) {
     getWorkout();
   }, [workoutId]);
 
+  function updateWorkoutState (workout, newWorkoutDoc) {
+    const index = props.workouts.indexOf(workout)
+    const newWorkouts = [...props.workouts]
+    newWorkouts.splice(index, 1)
+    newWorkouts.push(newWorkoutDoc)
+    props.setWorkouts(newWorkouts)
+  }
+
   async function handleAddGoal(goalFormData) {
     if (!goalFormData.goalType || !goalFormData.endDate) {
       return;
@@ -31,6 +39,7 @@ export default function WorkoutDetails(props) {
       console.error(newWorkoutDoc.error);
       return;
     }
+    updateWorkoutState(workout, newWorkoutDoc)
     setWorkout((prev) => ({
       ...prev,
       goals: newWorkoutDoc.goals,
@@ -48,6 +57,7 @@ export default function WorkoutDetails(props) {
       console.error(updatedWorkout.error);
       return;
     }
+    updateWorkoutState(workout, updatedWorkout)
     setWorkout((prev) => ({
       ...prev,
       goals: prev.goals.map((goal) =>
@@ -87,7 +97,7 @@ export default function WorkoutDetails(props) {
       <Link className={styles.link} to={"/workouts"}>
         Back to Workouts
       </Link>
-        {/* <ProgressPhoto /> */}
+        <ProgressPhoto workoutId={workoutId}/>
       <section>
         <GoalForm handleAddGoal={handleAddGoal} />
         <h2>Goals</h2>
